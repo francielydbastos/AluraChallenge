@@ -1,7 +1,6 @@
 package com.example.controlefinanceiro.entity;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
@@ -19,23 +19,30 @@ public class Despesas {
 	private Long id;
 	
 	@Column
+	@NotNull
 	private String descricao;
 	
 	@Column
+	@NotNull
 	private double valor;
 	
 	@Column
+	@NotNull
 	private LocalDate data;
+	
+	@Column
+	private String categoria;
 	
 	public Despesas() {
 	}
 	
-	public Despesas(long id, String descricao, double valor, LocalDate data) {
+	public Despesas(long id, String descricao, double valor, LocalDate data, String categoria) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
 		this.data = data;
+		this.categoria = categoria;
 	}
 
 	public Long getId() {
@@ -69,8 +76,14 @@ public class Despesas {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-	
-	
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
 }
 
 

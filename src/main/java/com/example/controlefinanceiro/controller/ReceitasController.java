@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.controlefinanceiro.entity.Receitas;
 import com.example.controlefinanceiro.service.ReceitasService;
 
@@ -37,6 +36,16 @@ public class ReceitasController {
 	@GetMapping("/{id}")
 	public Receitas getById(@PathVariable Long id) {
 		return service.getById(id);
+	}
+	
+	@GetMapping("/{descricao}")
+	public List<Receitas> getByDescricao(@PathVariable String descricao) {
+		return service.getByDescricao(descricao);
+	}
+	
+	@GetMapping("/{ano}/{mes}")
+	public List<Receitas> getById(@PathVariable int ano, @PathVariable int mes) {
+		return service.getByDate(ano, mes);
 	}
 
 	@PutMapping("/{id}")

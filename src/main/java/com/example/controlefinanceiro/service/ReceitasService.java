@@ -2,10 +2,8 @@ package com.example.controlefinanceiro.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.controlefinanceiro.entity.Receitas;
 import com.example.controlefinanceiro.repository.ReceitasRepository;
 
@@ -69,6 +67,32 @@ public class ReceitasService {
 		} catch(Exception e){
 			e.getMessage();
 		}
+	}
+	
+	public List<Receitas> getByDescricao(String descricao) {
+		List<Receitas> receitas = getAllReceitas();
+		
+		List<Receitas> listaReceitas = new ArrayList<Receitas>();
+		for (Receitas receita : receitas) {
+			if (receita.getDescricao().contains(descricao)) {
+				listaReceitas.add(receita);
+			}
+		}
+		
+		return listaReceitas;
+	}
+	
+	public List<Receitas> getByDate(int ano, int mes) {
+		List<Receitas> receitas = getAllReceitas();
+		
+		List<Receitas> listaReceitas = new ArrayList<Receitas>();
+		for (Receitas receita : receitas) {
+			if (receita.getData().getYear() == ano && receita.getData().getMonthValue() == mes) {
+				listaReceitas.add(receita);
+			}
+		}
+		
+		return listaReceitas;
 	}
 
 }
